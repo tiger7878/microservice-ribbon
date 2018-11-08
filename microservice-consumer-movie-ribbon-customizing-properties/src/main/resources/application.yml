@@ -1,0 +1,17 @@
+server:
+  port: 8010
+
+spring:
+  application:
+    name: microservice-consumer-movie
+eureka:
+  instance:
+    prefer-ip-address: true #true：将自己的ip注册到Eureka Server，false或者不配置：注册微服务所在的操作系统的hostname到Eureka Server
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/ #Eureka Server的交互地址，注册和发现都需要用它-单点
+
+#使用属性自定义ribbon负载均衡规则
+microservice-provider-user:
+  ribbon:
+    NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RandomRule
